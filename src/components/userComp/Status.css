@@ -1,0 +1,49 @@
+.status-container {
+  display: flex;
+  height: 100vh; /* Take complete height */
+}
+
+.right-content {
+  width: 80%; /* Take 70% of total width */
+  height: 100%; /* Take complete height */
+  display: flex;
+  justify-content: center; /* Center the content horizontally */
+  align-items: center; /* Center the content vertically */
+}
+.left-nav {
+  width: 20%; /* Take 30% of total width */
+  min-width: 200px; /* Set minimum width */
+  height: 100%; /* Take complete height */
+  background-color: #f0f0f0;
+  border-right: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Style for top buttons */
+.top-buttons {
+  flex-grow: 1; /* Fill remaining space */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* Style for logout button */
+.logout-button {
+  margin-top: auto; /* Push button to bottom */
+}
+
+/* Styles for buttons inside left nav */
+.left-nav button {
+  padding: 10px 15px;
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: #fff;
+}
+
+.left-nav button:hover {
+  background-color: #0056b3;
+}
