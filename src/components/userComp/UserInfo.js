@@ -60,6 +60,22 @@ const UserInfo = () => {
             <p>
               <strong>Email Address:</strong> {userData.email_address}
             </p>
+
+            <p>
+              <strong>fathersName:</strong> {userData.fathersName}
+            </p>
+            <p>
+              <strong>mothersName:</strong> {userData.mothersName}
+            </p>
+            <p>
+              <strong>phoneNumber:</strong> {userData.phoneNumber}
+            </p>
+            <p>
+              <strong>permanentaddress:</strong> {userData.permanentaddress}
+            </p>
+            <p>
+              <strong>localaddress:</strong> {userData.localaddress}
+            </p>
           </div>
         )}
       </div>

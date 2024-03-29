@@ -47,3 +47,40 @@
 .left-nav button:hover {
   background-color: #0056b3;
 }
+.user-info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.user-info p {
+  flex: 0 1 calc(50% - 20px); /* Adjust width of columns */
+  margin: 10px;
+}
+
+.user-info strong {
+  font-weight: bold;
+}
+.applyForm {
+  margin-top: 20px;
+}
+.dropdowns {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.dropdowns select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  cursor: pointer;
+  outline: none;
+}
+
+.forms {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}

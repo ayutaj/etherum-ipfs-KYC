@@ -24,7 +24,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard/status",
-    element: <Status />,
+    element: <Status a={"aa"} />,
   },
   {
     path: "/dashboard/apply_for_kyc",

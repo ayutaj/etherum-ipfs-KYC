@@ -1,8 +1,66 @@
-/* Register.css */
-
 .register-container {
   width: 100%;
-  max-width: 800px; /* Adjust as needed */
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.register-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-group {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  flex: 1;
+  text-align: right;
+  margin-right: 10px;
+}
+
+.form-group input {
+  flex: 2;
+  padding: 10px;
+  width: calc(50% - 15px); /* Adjust width of input fields */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.form-group input:last-child {
+  margin-right: 0;
+}
+
+.register-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.register-button:hover {
+  background-color: #0056b3;
+}
+
+/* .register-container {
+  width: 100%;
+  max-width: 800px;
   margin: 0 auto;
   padding: 20px;
   border: 1px solid #ccc;
@@ -52,4 +110,4 @@
 
 .register-button:hover {
   background-color: #0056b3;
-}
+} */
