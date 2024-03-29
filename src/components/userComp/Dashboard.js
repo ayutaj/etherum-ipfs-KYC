@@ -7,7 +7,7 @@ function Dashboard(props) {
     <div className="dashboard-container">
       <LeftNav />
       <div className="right-content">
-        <p>This is dashboard</p>
+        <p>This is dashboard {props.a}</p>
       </div>
     </div>
   );

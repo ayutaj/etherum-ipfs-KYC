@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Register.css";
-import Web3 from "web3";
-import configuration from "./Kycsol.json";
 
-const Register = () => {
+const Register = (props) => {
+  const contract = props.contract_prop;
+  const account = props.account_prop;
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstName: "",
@@ -32,12 +32,11 @@ const Register = () => {
         Object.values(formData).every((value) => value !== "") // Check if all values are filled
       ) {
         const provider = window.ethereum;
-
         if (typeof provider !== "undefined") {
-          const web3 = new Web3(provider);
-          await provider.request({ method: "eth_requestAccounts" });
-          const accounts = await web3.eth.getAccounts();
-          const account = accounts[0];
+          // const web3 = new Web3(provider);
+          // await provider.request({ method: "eth_requestAccounts" });
+          // const accounts = await web3.eth.getAccounts();
+          // const account = accounts[0];
           const fname = formData.firstName;
           const lname = formData.lastName;
           const dob = formData.dob.toString();
@@ -48,11 +47,11 @@ const Register = () => {
           const phoneNumber = formData.phoneNumber.toString();
           const fathersName = formData.fathersName.toString();
           const mothersName = formData.mothersName.toString();
-          const contractAddress = process.env.REACT_APP_CONTRACT_ADDRESS;
-          const contractABI = configuration.abi;
-          const contract = new web3.eth.Contract(contractABI, contractAddress);
+          // const contractAddress = process.env.REACT_APP_CONTRACT_ADDRESS;
+          // const contractABI = configuration.abi;
+          // const contract = new web3.eth.Contract(contractABI, contractAddress);
           try {
-            console.log(accounts[0]);
+            console.log(account);
             console.log(4);
             await contract.methods
               .add_user(

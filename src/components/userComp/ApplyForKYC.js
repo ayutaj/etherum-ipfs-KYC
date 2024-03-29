@@ -1,37 +1,24 @@
-import React, { useState } from "react";
-// import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import LeftNav from "./LeftNav";
 import "./Apply.css";
 import Pancard from "./Pancard";
 import Passport from "./Passport";
 
-import Web3 from "web3";
-import configuration from "./Kycsol.json";
-
-let userData, account, contract;
-const banks = ["State Bank of India", "Bank of India"];
-const doctype = ["panCard", "passport"];
-const ApplyForKYC = () => {
-  // const navigate = useNavigate();
-  const [updatebtn, setUpdatebtn] = useState(0);
+const ApplyForKYC = (props) => {
+  const banks = ["State Bank of India", "Bank of India"];
+  const doctype = ["panCard", "passport"];
+  const contract = props.contract_prop;
+  const account = props.account_prop;
   const [selectedDoctype, setSelectedDoctype] = useState("");
   const [selectedBank, setSelectedBank] = useState("");
-
-  const fetchapply = async () => {
-    try {
-      const provider = window.ethereum;
-      const web3 = new Web3(provider);
+  const [userData, setUserData] = useState();
+  useEffect(
+    () => async () => {
+      let provider = window.ethereum;
       if (typeof provider !== "undefined") {
-        await provider.request({ method: "eth_requestAccounts" });
-        const accounts = await web3.eth.getAccounts();
-        account = accounts[0];
-        const contractAddress = process.env.REACT_APP_CONTRACT_ADDRESS;
-        const contractABI = configuration.abi;
-        contract = new web3.eth.Contract(contractABI, contractAddress);
-        console.log("connect apply successful");
         try {
-          userData = await contract.methods.mp_usermap(account).call();
-          setUpdatebtn(1);
+          let tempuserData = await contract.methods.mp_usermap(account).call();
+          setUserData(tempuserData);
         } catch (e) {
           console.log(e);
           alert("Check the connectivity of user metamask");
@@ -39,10 +26,9 @@ const ApplyForKYC = () => {
       } else {
         console.log("Non-ethereum browser detected.Please install Metamask");
       }
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
+    },
+    [contract, account]
+  );
 
   function handleDocChange(val) {
     setSelectedDoctype(val);
@@ -56,8 +42,8 @@ const ApplyForKYC = () => {
     <div className="apply-container">
       <LeftNav />
       <div className="right-content">
-        {updatebtn === 0 && <button onClick={fetchapply}>Apply</button>}
-        {updatebtn === 1 && userData && (
+        {!userData && <p>Loading..................</p>}
+        {userData && (
           <div className="container_for_apply">
             <div>
               <div className="tp">
@@ -138,3 +124,30 @@ const ApplyForKYC = () => {
 };
 
 export default ApplyForKYC;
+
+// const fetchapply = async () => {
+//   try {
+//     const provider = window.ethereum;
+//     // const web3 = new Web3(provider);
+//     if (typeof provider !== "undefined") {
+//       // await provider.request({ method: "eth_requestAccounts" });
+//       // const accounts = await web3.eth.getAccounts();
+//       // account = accounts[0];
+//       // const contractAddress = process.env.REACT_APP_CONTRACT_ADDRESS;
+//       // const contractABI = configuration.abi;
+//       // contract = new web3.eth.Contract(contractABI, contractAddress);
+//       console.log("connect apply successful");
+//       try {
+//         userData = await contract.methods.mp_usermap(account).call();
+//         setUpdatebtn(1);
+//       } catch (e) {
+//         console.log(e);
+//         alert("Check the connectivity of user metamask");
+//       }
+//     } else {
+//       console.log("Non-ethereum browser detected.Please install Metamask");
+//     }
+//   } catch (error) {
+//     console.error("Error fetching data:", error);
+//   }
+// };
