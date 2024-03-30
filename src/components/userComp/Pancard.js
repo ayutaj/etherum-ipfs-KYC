@@ -66,7 +66,7 @@ const Pancard = (props) => {
     let dc = "pancard";
     let datastring =
       account +
-      "300," +
+      "23," +
       dc +
       "," +
       props.bankname_prop +
@@ -92,10 +92,10 @@ const Pancard = (props) => {
     encryptbank.setPublicKey(bank_publickey);
     const encrypted_hash_bank = encryptbank.encrypt(datastring);
 
-    let acc_doc_bank = account + "300," + dc + "," + props.bankname_prop;
+    let acc_doc_bank = account + "23," + dc + "," + props.bankname_prop;
     await contract.methods
       .add_data_for_verification(
-        account + "300",
+        account + "23",
         encrypted_hash_user,
         encrypted_hash_bank,
         props.bankname_prop,

@@ -7,7 +7,10 @@ import UserInfo from "./components/userComp/UserInfo";
 import Status from "./components/userComp/Status";
 import ApplyForKYC from "./components/userComp/ApplyForKYC";
 import Register from "./components/Register";
+import Bankdashboard from "./components/bankComp/Bankdashboard";
+import Bankapplication from "./components/bankComp/Bankapplication";
 import Web3 from "web3";
+import Bankinfo from "./components/bankComp/Bankinfo";
 import configuration from "./components/Kycsol.json";
 
 // let contract, account;
@@ -83,6 +86,22 @@ function App() {
     {
       path: "/register",
       element: <Register account_prop={account} contract_prop={contract} />,
+    },
+    {
+      path: "/bankdashboard",
+      element: (
+        <Bankdashboard account_prop={account} contract_prop={contract} />
+      ),
+    },
+    {
+      path: "/bankinfo",
+      element: <Bankinfo account_prop={account} contract_prop={contract} />,
+    },
+    {
+      path: "/bankapplication",
+      element: (
+        <Bankapplication account_prop={account} contract_prop={contract} />
+      ),
     },
   ]);
 

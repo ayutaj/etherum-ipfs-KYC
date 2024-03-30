@@ -20,9 +20,12 @@ const LoginPage = (props) => {
         if (isuser) {
           navigate("/dashboard");
         } else {
-          // let isuser = await contract.methods.mp_isUser(account).call();
-          // isuser = Number(isuser);
-          navigate("/register");
+          let isbank = await contract.methods.mp_bank_name(account).call();
+          if (isbank.length > 0) {
+            navigate("/bankdashboard");
+          } else {
+            navigate("/register");
+          }
         }
       } catch (e) {
         console.log(e);

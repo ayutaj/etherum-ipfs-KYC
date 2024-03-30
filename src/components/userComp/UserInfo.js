@@ -12,7 +12,9 @@ const UserInfo = (props) => {
       let provider = window.ethereum;
       if (typeof provider !== "undefined") {
         try {
-          let tempuserData = await contract.methods.mp_usermap(account).call();
+          let tempuserData = await contract.methods
+            .mp_usermap(account + "23")
+            .call();
           setUserData(tempuserData);
         } catch (e) {
           console.log(e);

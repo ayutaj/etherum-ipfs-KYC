@@ -60,7 +60,7 @@ const Register = (props) => {
                 dob,
                 nationality,
                 emailAddress,
-                account,
+                account + "23",
                 fathersName,
                 mothersName,
                 phoneNumber,
@@ -100,7 +100,8 @@ const Register = (props) => {
       <h1>Register Page</h1>
       <div className="register-content">
         <p>
-          Looks like you are not registered, fill the below form to get started
+          Looks like you are not a registered user, fill the below form to get
+          started
         </p>
         <form onSubmit={handleSubmit}>
           <div className="form-group">

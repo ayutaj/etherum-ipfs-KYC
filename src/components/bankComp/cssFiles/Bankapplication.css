@@ -1,0 +1,160 @@
+.Bankapplication-container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.inside {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.inside h2 {
+  text-align: center;
+}
+.tppara {
+  text-align: center;
+  display: flex;
+  justify-content: flex-end;
+  text-align: center;
+  /* background-color: red; */
+  box-sizing: border-box;
+  width: 100%;
+}
+.right-content {
+  width: 80%; /* Take 70% of total width */
+  height: 100%; /* Take complete height */
+  display: flex;
+  justify-content: start; /* Center the content horizontally */
+  overflow-y: hidden;
+  align-items: center;
+  text-align: center;
+}
+.scrollable-content {
+  height: 100%;
+  overflow-y: auto; /* Added overflow-y: auto */
+  padding-right: 15px;
+  padding-bottom: 20px; /* Added padding-bottom */
+  box-sizing: border-box; /* Added box-sizing: border-box */
+  width: 100%;
+}
+
+.slab {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #f0f0f0;
+  margin-bottom: 10px;
+  border-radius: 15px;
+}
+
+.slab-left {
+  display: flex;
+  align-items: flex-start;
+  /* background-color: red; */
+  width: 50%;
+}
+.slab-right {
+  display: flex;
+  /* background-color: blue; */
+  justify-content: flex-end;
+  width: 25%;
+}
+
+.slab-left > div {
+  margin-right: 10px; /* Adjust as needed */
+}
+
+.slab-left p,
+.slab-right p {
+  border-radius: 10px; /* Adjust as needed */
+  padding: 10px 20px;
+  box-sizing: border-box; /* Ensures padding is included in the element's total width/height */
+  font-size: 14px; /* Increased font size */
+  font-weight: 600; /* Bold font weight */
+  border: 2px solid #ccc; /* Added border */
+  text-align: center;
+}
+.slab-left p {
+  background-color: white;
+}
+.green {
+  background-color: rgb(30, 147, 30);
+  color: white;
+  font-size: 20px;
+}
+.red {
+  background-color: rgb(247, 68, 68);
+  color: white;
+  font-size: 20px;
+}
+.orange {
+  color: white;
+  font-size: 20px;
+  background-color: rgb(243, 175, 50);
+}
+
+/* Bankapplication.css */
+
+.slab {
+  background-color: #f0f0f0;
+  margin-bottom: 20px;
+  padding: 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.slab-tabs {
+  display: flex;
+  justify-content: space-between;
+}
+
+.slab-tab {
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+}
+
+/* Modal.css */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+  z-index: 1000; /* Ensure modal is on top of other content */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal-button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal-button-close {
+  background-color: #dc3545; /* Red */
+  color: #fff;
+}
+
+.modal-button-ok {
+  background-color: #007bff; /* Blue */
+  color: #fff;
+}

@@ -14,7 +14,7 @@ const Status = (props) => {
         try {
           console.log(contract);
           let fetchedArray = await contract.methods
-            .find_user_status(account + "300")
+            .find_user_status(account + "23")
             .call();
           // const fetchedarray = solfetchedarray.toString();
           console.log(fetchedArray);
@@ -53,6 +53,11 @@ const Status = (props) => {
           {updateUI === 1 && (
             <div className="inside">
               <h2>STATUS OF DOCUMENTS</h2>
+              <h4>
+                {statusArray.length === 0 && (
+                  <p>You have not applied for any document</p>
+                )}
+              </h4>
               {statusArray.map((slab, index) => (
                 <div key={index} className="slab">
                   <div className="slab-left">
