@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import LeftNav from "./LeftNav";
-import "./Apply.css";
+import "./cssFiles/Apply.css";
+import "./cssFiles/LeftNav.css";
 import Pancard from "./Pancard";
 import Passport from "./Passport";
 
@@ -42,82 +43,88 @@ const ApplyForKYC = (props) => {
     <div className="apply-container">
       <LeftNav />
       <div className="right-content">
-        {!userData && <p>Loading..................</p>}
-        {userData && (
-          <div className="container_for_apply">
-            <div>
-              <div className="tp">
-                <h2>User Information</h2>
-              </div>
-              <div className="user-info">
-                <p>
-                  <strong>First Name:</strong> {userData.fName}
-                </p>
-                <p>
-                  <strong>Last Name:</strong> {userData.lName}
-                </p>
-                <p>
-                  <strong>Date of Birth:</strong> {userData.dob}
-                </p>
-                <p>
-                  <strong>Nationality:</strong> {userData.nationality}
-                </p>
-                <p>
-                  <strong>Email Address:</strong> {userData.email_address}
-                </p>
-                <p>
-                  <strong>phoneNumber:</strong> {userData.phoneNumber}
-                </p>
-              </div>
-            </div>
-            <div className="applyForm">
-              <div className="dropdowns">
-                <select
-                  value={selectedDoctype}
-                  onChange={(e) => {
-                    handleDocChange(e.target.value);
-                  }}
-                >
-                  <option value="">Select Document Type</option>
-                  {doctype.map((type, index) => (
-                    <option key={index} value={type}>
-                      {type}
-                    </option>
-                  ))}
-                </select>
-                <select
-                  value={selectedBank}
-                  onChange={(e) => {
-                    handleBankChange(e.target.value);
-                  }}
-                >
-                  <option value="">Select Bank</option>
-                  {banks.map((bank, index) => (
-                    <option key={index} value={bank}>
-                      {bank}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              <div className="forms">
-                {selectedDoctype === "panCard" && (
-                  <Pancard
-                    contract_prop={contract}
-                    account_prop={account}
-                    bankname_prop={selectedBank}
-                  />
-                )}
-                {selectedDoctype === "passport" && (
-                  <Passport
-                    contract_prop={contract}
-                    account_prop={account}
-                    bankname_prop={selectedBank}
-                  />
-                )}
-              </div>
-            </div>
+        {!userData && (
+          <div className="tppara">
+            <p>Loading..................</p>
           </div>
         )}
+        <div className="scrollable-content">
+          {userData && (
+            <div className="container_for_apply">
+              <div>
+                <div className="tp">
+                  <h2>USER INFORMATION</h2>
+                </div>
+                <div className="user-info">
+                  <p>
+                    <strong>First Name:</strong> {userData.fName}
+                  </p>
+                  <p>
+                    <strong>Last Name:</strong> {userData.lName}
+                  </p>
+                  <p>
+                    <strong>Date of Birth:</strong> {userData.dob}
+                  </p>
+                  <p>
+                    <strong>Nationality:</strong> {userData.nationality}
+                  </p>
+                  <p>
+                    <strong>Email Address:</strong> {userData.email_address}
+                  </p>
+                  <p>
+                    <strong>phoneNumber:</strong> {userData.phoneNumber}
+                  </p>
+                </div>
+              </div>
+              <div className="applyForm">
+                <div className="dropdowns">
+                  <select
+                    value={selectedDoctype}
+                    onChange={(e) => {
+                      handleDocChange(e.target.value);
+                    }}
+                  >
+                    <option value="">Select Document Type</option>
+                    {doctype.map((type, index) => (
+                      <option key={index} value={type}>
+                        {type}
+                      </option>
+                    ))}
+                  </select>
+                  <select
+                    value={selectedBank}
+                    onChange={(e) => {
+                      handleBankChange(e.target.value);
+                    }}
+                  >
+                    <option value="">Select Bank</option>
+                    {banks.map((bank, index) => (
+                      <option key={index} value={bank}>
+                        {bank}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div className="forms">
+                  {selectedDoctype === "panCard" && (
+                    <Pancard
+                      contract_prop={contract}
+                      account_prop={account}
+                      bankname_prop={selectedBank}
+                    />
+                  )}
+                  {selectedDoctype === "passport" && (
+                    <Passport
+                      contract_prop={contract}
+                      account_prop={account}
+                      bankname_prop={selectedBank}
+                    />
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -20,6 +20,8 @@ const LoginPage = (props) => {
         if (isuser) {
           navigate("/dashboard");
         } else {
+          // let isuser = await contract.methods.mp_isUser(account).call();
+          // isuser = Number(isuser);
           navigate("/register");
         }
       } catch (e) {

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import LeftNav from "./LeftNav";
-import "./Userinfo.css";
+import "./cssFiles/Userinfo.css";
+import "./cssFiles/LeftNav.css";
 
 const UserInfo = (props) => {
   const contract = props.contract_prop;
@@ -29,39 +30,43 @@ const UserInfo = (props) => {
       <div className="right-content">
         {!userData && <p>Loading........</p>}
         {userData && (
-          <div className="user-info">
-            <h2>User Information</h2>
-            <p>
-              <strong>First Name:</strong> {userData.fName}
-            </p>
-            <p>
-              <strong>Last Name:</strong> {userData.lName}
-            </p>
-            <p>
-              <strong>Date of Birth:</strong> {userData.dob}
-            </p>
-            <p>
-              <strong>Nationality:</strong> {userData.nationality}
-            </p>
-            <p>
-              <strong>Email Address:</strong> {userData.email_address}
-            </p>
+          <div>
+            <div className="tp">
+              <h2>USER INFORMATION</h2>
+            </div>
+            <div className="user-info">
+              <p>
+                <strong>First Name:</strong> {userData.fName}
+              </p>
+              <p>
+                <strong>Last Name:</strong> {userData.lName}
+              </p>
+              <p>
+                <strong>Date of Birth:</strong> {userData.dob}
+              </p>
+              <p>
+                <strong>Nationality:</strong> {userData.nationality}
+              </p>
+              <p>
+                <strong>Email Address:</strong> {userData.email_address}
+              </p>
 
-            <p>
-              <strong>fathersName:</strong> {userData.fathersName}
-            </p>
-            <p>
-              <strong>mothersName:</strong> {userData.mothersName}
-            </p>
-            <p>
-              <strong>phoneNumber:</strong> {userData.phoneNumber}
-            </p>
-            <p>
-              <strong>permanentaddress:</strong> {userData.permanentaddress}
-            </p>
-            <p>
-              <strong>localaddress:</strong> {userData.localaddress}
-            </p>
+              <p>
+                <strong>fathersName:</strong> {userData.fathersName}
+              </p>
+              <p>
+                <strong>mothersName:</strong> {userData.mothersName}
+              </p>
+              <p>
+                <strong>phoneNumber:</strong> {userData.phoneNumber}
+              </p>
+              <p>
+                <strong>permanentaddress:</strong> {userData.permanentaddress}
+              </p>
+              <p>
+                <strong>localaddress:</strong> {userData.localaddress}
+              </p>
+            </div>
           </div>
         )}
       </div>

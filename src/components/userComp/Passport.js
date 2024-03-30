@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { JSEncrypt } from "jsencrypt";
-import "./Passport.css";
+import "./cssFiles/Passport.css";
 const Passport = (props) => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({

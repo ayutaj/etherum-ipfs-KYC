@@ -1,9 +1,11 @@
 .passport-form {
   width: 80%;
   margin: 0 auto;
+  margin-bottom: 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 20px;
 }
 
 .form-group {
