@@ -11,7 +11,9 @@ const Bankapplication = (props) => {
   const [statusArray, setStatusArray] = useState([]);
   const [updateUI, setUpdateUI] = useState(0);
   const [selectedSlab, setSelectedSlab] = useState(null);
+
   //get_pending_applications_for_bank
+
   useEffect(
     () => async () => {
       let provider = window.ethereum;
@@ -33,27 +35,23 @@ const Bankapplication = (props) => {
             let decrypted_hash = decryptbank.decrypt(fetchedArray[i]);
             dec_arr.push(decrypted_hash);
           }
-          const newArray = [];
+          let newArray = [];
           for (let i = 0; i < dec_arr.length; i++) {
             const arr = dec_arr[i].split(",");
             const keystr = arr[0] + "," + arr[1] + "," + arr[2];
-            console.log(`keystr ${keystr}`);
+            // console.log(`keystr ${keystr}`);
             let status = await contract.methods
               .mp_account_doc_bank(keystr)
               .call();
             status = Number(status);
-            console.log(status);
             if (status === 2) {
               newArray.push(dec_arr[i] + "," + keystr);
             }
           }
-          console.log(newArray);
           const new2darray = [];
           for (let i = 0; i < newArray.length; i++) {
             new2darray.push(newArray[i].split(","));
           }
-          console.log("yee");
-          console.log(new2darray);
           setStatusArray(new2darray);
           setUpdateUI(1);
         } catch (e) {
@@ -72,6 +70,12 @@ const Bankapplication = (props) => {
   };
 
   const handleCloseModal = () => {
+    setStatusArray((prevStatusArray) =>
+      prevStatusArray.filter((slab) => slab !== selectedSlab)
+    );
+    setSelectedSlab(null);
+  };
+  const handleCloseModalcut = () => {
     setSelectedSlab(null);
   };
   return (
@@ -98,10 +102,29 @@ const Bankapplication = (props) => {
                   className="slab"
                   onClick={() => handleSlabClick(index)}
                 >
-                  <div className="slab-tabs">
-                    <div className="slab-tab">{slab[1]}</div>
-                    <div className="slab-tab">{slab[2]}</div>
-                    <div className="slab-tab">{slab[3]}</div>
+                  <div className="smallwrapper">
+                    <div className="key-slab">
+                      <p>DOCUMENT : </p>
+                    </div>
+                    <div className="slab-tab">
+                      <p>{slab[1]}</p>
+                    </div>
+                  </div>
+                  <div className="smallwrapper">
+                    <div className="key-slab">
+                      <p>BANK : </p>
+                    </div>
+                    <div className="slab-tab">
+                      <p>{slab[2]}</p>
+                    </div>
+                  </div>
+                  <div className="smallwrapper">
+                    <div className="key-slab">
+                      <p>NAME : </p>
+                    </div>
+                    <div className="slab-tab">
+                      <p>{slab[3]}</p>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -113,7 +136,10 @@ const Bankapplication = (props) => {
         <Modal
           isOpen={!!selectedSlab}
           onClose={handleCloseModal}
-          documentType={selectedSlab[1]}
+          data={selectedSlab}
+          account={account}
+          contract={contract}
+          handleCloseModalcut={handleCloseModalcut}
         />
       )}
     </div>

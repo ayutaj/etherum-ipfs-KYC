@@ -61,6 +61,25 @@
   align-items: flex-start;
 }
 
+.button-container {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.button-container button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+}
+
+.button-container button:hover {
+  background-color: #45a049;
+}
+
 /* .left-nav {
   width: 20%;
   min-width: 200px;

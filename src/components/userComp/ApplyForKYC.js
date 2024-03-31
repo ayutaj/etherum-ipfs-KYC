@@ -6,19 +6,30 @@ import Pancard from "./Pancard";
 import Passport from "./Passport";
 
 const ApplyForKYC = (props) => {
-  const banks = ["State Bank of India", "Bank of India"];
   const doctype = ["panCard", "passport"];
   const contract = props.contract_prop;
   const account = props.account_prop;
   const [selectedDoctype, setSelectedDoctype] = useState("");
   const [selectedBank, setSelectedBank] = useState("");
   const [userData, setUserData] = useState();
+  const [banks, setBanks] = useState([]);
   useEffect(
     () => async () => {
       let provider = window.ethereum;
       if (typeof provider !== "undefined") {
         try {
           let tempuserData = await contract.methods.mp_usermap(account).call();
+          const listBankaccount = await contract.methods.get_allbank().call();
+          const banknamelist = [];
+          for (let i = 0; i < listBankaccount.length; i++) {
+            const bkname = await contract.methods
+              .mp_bank_name(listBankaccount[i])
+              .call();
+            banknamelist.push(bkname);
+          }
+          // console.log("yiuuoup");
+          setBanks(banknamelist);
+          console.log(tempuserData);
           setUserData(tempuserData);
         } catch (e) {
           console.log(e);

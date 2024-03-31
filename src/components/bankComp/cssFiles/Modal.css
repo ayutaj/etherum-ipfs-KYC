@@ -1,4 +1,19 @@
-/* Modal.css */
+/* CSS */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  box-sizing: border-box;
+
+  overflow: hidden;
+}
 
 .modal-overlay {
   position: fixed;
@@ -6,36 +21,79 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
-  z-index: 1000; /* Ensure modal is on top of other content */
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .modal-content {
-  background-color: #fff;
+  width: 800px; /* Adjust width as needed */
+  height: 80%;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  background-color: white;
   padding: 20px;
-  border-radius: 5px;
+  max-height: 80vh; /* Limiting height to 80% of viewport height */
+  overflow-y: auto; /* Enable vertical scrolling */
+  border-radius: 8px;
+  position: relative;
 }
 
-.modal-buttons {
-  display: flex;
-  justify-content: space-between;
-}
-
-.modal-button {
-  padding: 10px 20px;
-  border-radius: 5px;
+.cut-button {
+  position: absolute;
+  top: 10px; /* Adjust top position as needed */
+  right: 10px; /* Adjust right position as needed */
+  background-color: transparent;
+  border: none;
+  color: #888;
+  font-size: 20px;
   cursor: pointer;
 }
 
-.modal-button-close {
-  background-color: #dc3545; /* Red */
-  color: #fff;
+.cut-button:hover {
+  color: #555; /* Change color on hover */
+}
+.upper {
+  margin-bottom: 20px;
+  overflow-y: auto;
 }
 
-.modal-button-ok {
-  background-color: #007bff; /* Blue */
-  color: #fff;
+.button-container {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.button-container button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #4caf50;
+  color: white;
+  cursor: pointer;
+}
+
+.button-container button:hover {
+  background-color: #219b27;
+}
+.button-container .reject {
+  background-color: red;
+}
+.button-container .reject:hover {
+  background-color: rgb(176, 28, 28);
+}
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  z-index: 999; /* Ensure overlay is on top of other content */
+  pointer-events: auto; /* Enable pointer events on overlay */
+}
+.blurred {
+  filter: blur(5px); /* Apply a blur effect to the content */
 }

@@ -60,7 +60,7 @@ const Register = (props) => {
                 dob,
                 nationality,
                 emailAddress,
-                account + "23",
+                account,
                 fathersName,
                 mothersName,
                 phoneNumber,
@@ -69,14 +69,6 @@ const Register = (props) => {
               )
               .send({ from: account });
             console.log(5);
-            let isuser = await contract.methods.mp_isUser(account).call();
-            console.log(isuser);
-            isuser = Number(isuser);
-            if (isuser === 0) {
-              navigate("/register");
-            } else {
-              navigate("/dashboard");
-            }
 
             navigate("/dashboard");
           } catch (e) {
