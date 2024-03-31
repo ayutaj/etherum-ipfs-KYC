@@ -1,12 +1,26 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./Loginpage.css";
-import Tp from "./userComp/Tp";
+// import Tp from "./userComp/Tp";
 
 const LoginPage = (props) => {
+  const navigate = useNavigate();
+
   const contract = props.contract_prop;
   const account = props.account_prop;
-  const navigate = useNavigate();
+  const handleadmin = () => {
+    // const isAdmin= await contract.methods.is_admin(account).call();
+    // const admin_list = ["0xC43f6BA8e7e5A5f284B6665Fb40E60E051A1798D"];
+    let isAdmin = account === "0xC43f6BA8e7e5A5f284B6665Fb40E60E051A1798D";
+
+    console.log(isAdmin);
+    if (isAdmin) {
+      navigate("/admin");
+    } else {
+      alert("You are not admin");
+      return;
+    }
+  };
   const handleLogin = async () => {
     const provider = window.ethereum;
     console.log(typeof provider);
@@ -40,14 +54,18 @@ const LoginPage = (props) => {
 
   return (
     <>
-      <Tp></Tp>
       <div className="login-container">
-        <h1>Login Page</h1>
+        <h1>Login</h1>
         <div className="login-content">
           <p>Login through Metamask</p>
-          <button className="login-button" onClick={handleLogin}>
-            Login
-          </button>
+          <div className="logbutton">
+            <button className="login-button" onClick={handleLogin}>
+              User/Bank
+            </button>
+            <button className="login-button" onClick={handleadmin}>
+              Admin
+            </button>
+          </div>
         </div>
       </div>
     </>

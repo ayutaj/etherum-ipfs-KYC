@@ -32,7 +32,7 @@ const Passport = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     // Check if all fields are filled
-    console.log(formData);
+    // console.log(formData);
     for (const key in formData) {
       if (formData[key] === "") {
         alert(`Please fill ${key} field.`);

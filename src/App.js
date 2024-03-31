@@ -9,33 +9,10 @@ import ApplyForKYC from "./components/userComp/ApplyForKYC";
 import Register from "./components/Register";
 import Bankdashboard from "./components/bankComp/Bankdashboard";
 import Bankapplication from "./components/bankComp/Bankapplication";
+import Admin from "./components/adminComp/Admin";
 import Web3 from "web3";
 import Bankinfo from "./components/bankComp/Bankinfo";
 import configuration from "./components/Kycsol.json";
-
-// let contract, account;
-// let provider = window.ethereum;
-// const web3 = new Web3(provider);
-
-// const connect = async () => {
-//   if (typeof provider !== "undefined") {
-//     console.log("heelo");
-//     await provider.request({ method: "eth_requestAccounts" });
-//     const accounts = await web3.eth.getAccounts();
-//     account = accounts[0];
-//     const contractAddress = process.env.REACT_APP_CONTRACT_ADDRESS;
-//     const contractABI = configuration.abi;
-//     contract = new web3.eth.Contract(contractABI, contractAddress);
-//     console.log("connect successful----------------------");
-//   } else {
-//     console.log("Non-ethereum browser detected.Please install Metamask");
-//   }
-// };
-
-// window.addEventListener("load", async () => {
-//   connect();
-//   console.log("on load login worked correctly");
-// });
 
 function App() {
   const [account, setaccount] = useState(null);
@@ -50,6 +27,7 @@ function App() {
         await provider.request({ method: "eth_requestAccounts" });
         const accounts = await web3.eth.getAccounts();
         setaccount(accounts[0]);
+        // setaccount("2f0Fb46864A3A1D56B087342bEB0899B814D0E");
         const contractAddress = process.env.REACT_APP_CONTRACT_ADDRESS;
         const contractABI = configuration.abi;
         let tempcontract = new web3.eth.Contract(contractABI, contractAddress);
@@ -102,6 +80,10 @@ function App() {
       element: (
         <Bankapplication account_prop={account} contract_prop={contract} />
       ),
+    },
+    {
+      path: "/admin",
+      element: <Admin account_prop={account} contract_prop={contract} />,
     },
   ]);
 

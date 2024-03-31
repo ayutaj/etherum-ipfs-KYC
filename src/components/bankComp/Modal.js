@@ -1,5 +1,3 @@
-// // Modal.js
-// Modal.js
 import React, { useState } from "react";
 import "./cssFiles/Modal.css";
 import Showpancard from "./Showpancard";

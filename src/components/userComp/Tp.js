@@ -1,7 +1,10 @@
 // import React from "react";
 // import axios from "axios";
 // import { JSEncrypt } from "jsencrypt";
+import forge from "node-forge";
+
 const Tp = (props) => {
+  // generateAndStoreKeys();
   // const privateKey = `-----BEGIN RSA PRIVATE KEY-----${process.env.REACT_APP_PRIVATEKEY}=-----END RSA PRIVATE KEY-----`;
   // let decryptuser = new JSEncrypt();
   // decryptuser.setPrivateKey(privateKey);
@@ -18,5 +21,18 @@ const Tp = (props) => {
   // console.log(`user ${dec_user}`);
   // console.log(dec_bank);
   // console.log("yoasdas");
+  // const key = new NodeRSA({ b: 2048 }); // Generate RSA 2048 keys
+
+  // // Extract public and private keys
+  // const publicKey = key.exportKey("public");
+  // const privateKey = key.exportKey("private");
+  // console.log(publicKey);
+  // console.log(privateKey);
+  const rsa = forge.pki.rsa;
+  const keys = rsa.generateKeyPair({ bits: 2048, e: 0x10001 });
+  const publicKeyPEM = forge.pki.publicKeyToPem(keys.publicKey);
+  const privateKeyPEM = forge.pki.privateKeyToPem(keys.privateKey);
+  console.log(publicKeyPEM);
+  console.log(privateKeyPEM);
 };
 export default Tp;

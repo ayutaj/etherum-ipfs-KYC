@@ -38,7 +38,7 @@ const Pancard = (props) => {
       return;
     }
     const acc_doc_bank_key =
-      props.account_prop + "pancard," + props.bankname_prop;
+      props.account_prop + ",pancard," + props.bankname_prop;
     let isApplicationpresent = await props.contract_prop.methods
       .mp_account_doc_bank(acc_doc_bank_key)
       .call();

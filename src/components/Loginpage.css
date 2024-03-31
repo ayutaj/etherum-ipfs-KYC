@@ -5,8 +5,8 @@
   max-width: 400px;
   margin: 0 auto;
   padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
   background-color: #f9f9f9;
   position: absolute;
   top: 50%;
@@ -34,10 +34,16 @@ p {
   background-color: #007bff;
   color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius: 7px;
   cursor: pointer;
 }
 
 .login-button:hover {
   background-color: #0056b3;
+}
+.logbutton {
+  box-sizing: border-box;
+  width: 300px;
+  display: flex;
+  justify-content: space-around;
 }
