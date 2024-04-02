@@ -19,11 +19,8 @@ const Modal = ({
     data[data.length - 2] +
     "," +
     data[data.length - 1];
-  console.log("key : ");
-  console.log(acc_dcoc_bank);
   const handleclick = async (val) => {
     const provider = window.ethereum;
-    console.log(contract);
     if (typeof provider !== "undefined") {
       try {
         setIsLoading(true);

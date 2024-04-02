@@ -3,6 +3,7 @@
   min-width: 200px; /* Set minimum width */
   height: 100vh;
   background-color: #f0f0f0;
+  background-color: #162c35;
   border-right: 1px solid #ccc;
   display: flex;
   flex-direction: column;
@@ -27,12 +28,22 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  background-color: #007bff;
+  border: 1px solid #1c313a;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: #d7d055f9;
   color: #fff;
+  font-family: Mija, -apple-system, BlinkMacSystemFont, Roboto, roboto slab,
+    droid serif, segoe ui, system-ui, Arial, sans-serif;
+  font-size: medium;
+  font-weight: bold;
 }
 
 .bankleft-nav button:hover {
   background-color: #0056b3;
+
+  background-color: #526d82;
+  transform: translateX(-2%) translateY(-2%);
 }
 .bankdo {
   /* background-color: black; */

@@ -7,12 +7,13 @@ const Admin = (props) => {
   const contract = props.contract_prop;
   const account = props.account_prop;
   const navigate = useNavigate();
+
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     ids: "",
     IFSC: "",
-    account_in: props.account_prop,
-    nationality: "",
+    account_in: "",
     MICR: "",
     branch: "",
     district: "",
@@ -36,8 +37,12 @@ const Admin = (props) => {
       const Keygenerator = () => {
         const rsa = forge.pki.rsa;
         const keys = rsa.generateKeyPair({ bits: 2048, e: 0x10001 });
-        const publicKeyPEM = forge.pki.publicKeyToPem(keys.publicKey);
-        const privateKeyPEM = forge.pki.privateKeyToPem(keys.privateKey);
+        let publicKeyPEM = forge.pki.publicKeyToPem(keys.publicKey);
+        let privateKeyPEM = forge.pki.privateKeyToPem(keys.privateKey);
+        publicKeyPEM = publicKeyPEM.toString();
+        privateKeyPEM = privateKeyPEM.toString();
+        console.log(`pubkey for bank ${publicKeyPEM}`);
+        console.log(`private key for bank${privateKeyPEM}`);
         return [publicKeyPEM, privateKeyPEM];
       };
       const [publicKey, privateKey] = Keygenerator();
@@ -45,12 +50,13 @@ const Admin = (props) => {
       const provider = window.ethereum;
       if (typeof provider !== "undefined") {
         try {
+          setIsLoading(true);
           await contract.methods
-            .add_user(
+            .add_bank(
               formData.name,
               formData.ids,
               formData.IFSC,
-              formData.nationality,
+              "Inida",
               formData.account_in,
               formData.MICR,
               publicKey,
@@ -60,6 +66,7 @@ const Admin = (props) => {
               formData.state
             )
             .send({ from: account });
+          setIsLoading(false);
           alert("bank added succesfully");
           navigate("/");
         } catch (e) {
@@ -76,88 +83,93 @@ const Admin = (props) => {
   };
 
   return (
-    <div className="admin-container">
-      <h2>Fill the details of bank</h2>
-      <div className="admin-content">
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="name">Bank Name :</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleInputChange}
-            />
-            <label htmlFor="ids">Abbrevation :</label>
-            <input
-              type="text"
-              id="ids"
-              name="ids"
-              value={formData.ids}
-              onChange={handleInputChange}
-            />
+    <>
+      {isLoading && <div className="loading-overlay"></div>}
+      <div className={`${isLoading ? "blurred" : ""}`}>
+        <div className="admin-container">
+          <h2>Fill the details of bank</h2>
+          <div className="admin-content">
+            <form onSubmit={handleSubmit}>
+              <div className="form-group">
+                <label htmlFor="name">Bank Name :</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                />
+                <label htmlFor="ids">Abbrevation :</label>
+                <input
+                  type="text"
+                  id="ids"
+                  name="ids"
+                  value={formData.ids}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="IFSC">IFSC Code :</label>
+                <input
+                  type="text"
+                  id="IFSC"
+                  name="IFSC"
+                  value={formData.IFSC}
+                  onChange={handleInputChange}
+                />
+                <label htmlFor="MICR">MICR code :</label>
+                <input
+                  type="text"
+                  id="MICR"
+                  name="MICR"
+                  value={formData.MICR}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="account_in">Sepolia Account :</label>
+                <input
+                  type="text"
+                  id="account_in"
+                  name="account_in"
+                  value={formData.account_in}
+                  onChange={handleInputChange}
+                />
+                <label htmlFor="branch">Branch :</label>
+                <input
+                  type="text"
+                  id="branch"
+                  name="branch"
+                  value={formData.branch}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="district">District :</label>
+                <input
+                  type="text"
+                  id="district"
+                  name="district"
+                  value={formData.district}
+                  onChange={handleInputChange}
+                />
+                <label htmlFor="state">State :</label>
+                <input
+                  type="text"
+                  id="state"
+                  name="state"
+                  value={formData.state}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <button className="admin-button" type="submit">
+                Add Bank
+              </button>
+            </form>
           </div>
-          <div className="form-group">
-            <label htmlFor="IFSC">IFSC Code :</label>
-            <input
-              type="text"
-              id="IFSC"
-              name="IFSC"
-              value={formData.IFSC}
-              onChange={handleInputChange}
-            />
-            <label htmlFor="MICR">MICR code :</label>
-            <input
-              type="text"
-              id="MICR"
-              name="MICR"
-              value={formData.MICR}
-              onChange={handleInputChange}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="nationality">Nationality :</label>
-            <input
-              type="text"
-              id="nationality"
-              name="nationality"
-              value={formData.nationality}
-              onChange={handleInputChange}
-            />
-            <label htmlFor="branch">Branch :</label>
-            <input
-              type="text"
-              id="branch"
-              name="branch"
-              value={formData.branch}
-              onChange={handleInputChange}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="district">District :</label>
-            <input
-              type="text"
-              id="district"
-              name="district"
-              value={formData.district}
-              onChange={handleInputChange}
-            />
-            <label htmlFor="state">State :</label>
-            <input
-              type="text"
-              id="state"
-              name="state"
-              value={formData.state}
-              onChange={handleInputChange}
-            />
-          </div>
-          <button className="admin-button" type="submit">
-            Add Bank
-          </button>
-        </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

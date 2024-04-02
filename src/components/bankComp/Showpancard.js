@@ -1,4 +1,3 @@
-// Showpancard.js
 import React from "react";
 import "./cssFiles/Showpancard.css";
 const Showpancard = ({ data }) => {

@@ -11,38 +11,63 @@
   overflow-y: hidden;
 }
 
-/* .left-nav {
-  width: 20%; 
-  min-width: 200px; 
-  height: 100%; 
-  background-color: #f0f0f0;
-  border-right: 1px solid #ccc;
+.dshtext-container {
+  height: 80%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  /* background-color: red; */
+}
+.divdshleft {
+  width: 45%;
+  height: 100%;
+  /* background-color: green; */
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
+  text-align: left;
 }
-
-.top-buttons {
-  flex-grow: 1; 
+.divdshright {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 50%;
+  /* background-color: black; */
 }
 
-
-.logout-button {
-  margin-top: auto;
+.dshheading {
+  color: rgb(24, 23, 23);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-family: Mija, -apple-system, BlinkMacSystemFont, Roboto, roboto slab,
+    droid serif, segoe ui, system-ui, Arial, sans-serif;
+  font-size: 50px;
+  /* background-color: aquamarine; */
+  font-weight: bolder;
+  font-style: normal;
+}
+.dshdashboard-text {
+  color: rgb(30, 28, 28);
+  font-family: Mija, -apple-system, BlinkMacSystemFont, Roboto, roboto slab,
+    droid serif, segoe ui, system-ui, Arial, sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  font-style: normal;
+  /* background-color: #3c0753; */
 }
 
-.left-nav button {
-  padding: 10px 15px;
-  margin: 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  background-color: #007bff;
-  color: #fff;
+.dshdashboard-image {
+  width: 90%;
+  height: 90%;
+  border: 3px solid rgb(255, 255, 255);
+  background: transparent;
+  padding: 8px;
+  border: 1px solid #3c0753;
+  box-shadow: 20px 35px 20px #9290c3;
 }
 
-.left-nav button:hover {
-  background-color: #0056b3;
-} */
+.dshdashboard-image:hover {
+  transform: scale(1.1); /* Increase the scale on hover */
+}

@@ -58,15 +58,17 @@
   font-weight: 600; /* Bold font weight */
   border: 2px solid #ccc; /* Added border */
   text-align: center;
-}
-.slab-tab p {
   background-color: white;
 }
 
 .smallwrapper {
   /* background-color: red; */
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  flex: 1;
+  /* background-color: red; */
+  /* flex: 1; */
+}
+.somethingdiff {
+  color: red;
 }

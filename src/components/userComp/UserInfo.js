@@ -30,41 +30,52 @@ const UserInfo = (props) => {
       <div className="right-content">
         {!userData && <p>Loading........</p>}
         {userData && (
-          <div>
+          <div className="usrdiv">
             <div className="tp">
+              <img src="/user_149071.png" alt="user" className="user-icon" />
               <h2>USER INFORMATION</h2>
             </div>
-            <div className="user-info">
+            <div className="user-infotp">
               <p>
-                <strong>First Name:</strong> {userData.fName}
+                <strong className="tagtp">FIRST NAME :</strong>{" "}
+                {userData.fName.toUpperCase()}
               </p>
               <p>
-                <strong>Last Name:</strong> {userData.lName}
+                <strong className="tagtp">LAST NAME :</strong>{" "}
+                {userData.lName.toUpperCase()}
               </p>
               <p>
-                <strong>Date of Birth:</strong> {userData.dob}
+                <strong className="tagtp">FATHER'S NAME :</strong>{" "}
+                {userData.fathersName.toUpperCase()}
               </p>
               <p>
-                <strong>Nationality:</strong> {userData.nationality}
+                <strong className="tagtp">MOTHER'S NAME :</strong>{" "}
+                {userData.mothersName.toUpperCase()}
               </p>
               <p>
-                <strong>Email Address:</strong> {userData.email_address}
+                <strong className="tagtp">DATE OF BIRTH :</strong>{" "}
+                {userData.dob.toUpperCase()}
+              </p>
+              <p>
+                <strong className="tagtp">NATIONALITY :</strong>{" "}
+                {userData.nationality.toUpperCase()}
+              </p>
+              <p>
+                <strong className="tagtp">EMAIL :</strong>{" "}
+                {userData.email_address.toLowerCase()}
               </p>
 
               <p>
-                <strong>fathersName:</strong> {userData.fathersName}
+                <strong className="tagtp">CONTACT NUMBER :</strong>{" "}
+                {userData.phoneNumber.toUpperCase()}
               </p>
               <p>
-                <strong>mothersName:</strong> {userData.mothersName}
+                <strong className="tagtp">PERMANENT ADDRESS :</strong>{" "}
+                {userData.permanentaddress.toUpperCase()}
               </p>
               <p>
-                <strong>phoneNumber:</strong> {userData.phoneNumber}
-              </p>
-              <p>
-                <strong>permanentaddress:</strong> {userData.permanentaddress}
-              </p>
-              <p>
-                <strong>localaddress:</strong> {userData.localaddress}
+                <strong className="tagtp">LOCAL ADDRESS :</strong>{" "}
+                {userData.localaddress.toUpperCase()}
               </p>
             </div>
           </div>
@@ -75,24 +86,3 @@ const UserInfo = (props) => {
 };
 
 export default UserInfo;
-
-// const [update, setUpdate] = useState(0);
-// const fetchData = async () => {
-//   try {
-//     const provider = window.ethereum;
-//     // const web3 = new Web3(provider);
-//     if (typeof provider !== "undefined") {
-//       // await provider.request({ method: "eth_requestAccounts" });
-//       // const accounts = await web3.eth.getAccounts();
-//       // const account = accounts[0];
-//       // const contractAddress = process.env.REACT_APP_CONTRACT_ADDRESS;
-//       // const contractABI = configuration.abi;
-//       // contract = new web3.eth.Contract(contractABI, contractAddress);
-//       // console.log("connect user successful");
-//     } else {
-//       console.log("Non-ethereum browser detected.Please install Metamask");
-//     }
-//   } catch (error) {
-//     console.error("Error fetching data:", error);
-//   }
-// };

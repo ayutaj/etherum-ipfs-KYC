@@ -14,6 +14,8 @@ const Passport = (props) => {
     image: null,
   });
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -24,15 +26,31 @@ const Passport = (props) => {
     if (file && file.type.startsWith("image/")) {
       setFormData({ ...formData, image: file });
     } else {
-      // File is not an image
       alert("Please upload an image file.");
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Check if all fields are filled
-    // console.log(formData);
+
+    const acc_doc_bank_key =
+      props.account_prop + ",passport," + props.bankname_prop;
+    let isApplicationpresent = await props.contract_prop.methods
+      .mp_account_doc_bank(acc_doc_bank_key)
+      .call();
+    isApplicationpresent = Number(isApplicationpresent);
+    if (isApplicationpresent === 2) {
+      alert(
+        `You have already applied for the Passport for ${props.bankname_prop}. Please wait....`
+      );
+      return;
+    }
+    if (isApplicationpresent === 3) {
+      alert(
+        `Your KYC has been already completed for Passport for ${props.bankname_prop}`
+      );
+      return;
+    }
     for (const key in formData) {
       if (formData[key] === "") {
         alert(`Please fill ${key} field.`);
@@ -43,10 +61,11 @@ const Passport = (props) => {
 
     const contract = props.contract_prop;
     const publicKeyuser = `-----BEGIN PUBLIC KEY-----${process.env.REACT_APP_PUBLIC_KEY}=-----END PUBLIC KEY-----`;
-    //uploading to pinata
     const imgfile = formData.image;
     const modifieddata = new FormData();
     modifieddata.append("file", imgfile);
+    setIsLoading(true);
+
     const resFile = await axios({
       method: "post",
       url: process.env.REACT_APP_PINATA_URL,
@@ -58,7 +77,6 @@ const Passport = (props) => {
       },
     });
     const ipfsHash = resFile.data.IpfsHash;
-    console.log(ipfsHash);
 
     let dc = "passport";
     let datastring =
@@ -105,78 +123,83 @@ const Passport = (props) => {
 
     console.log(`encrypted_user_hash ${encrypted_hash_user}`);
     console.log(`encrypted_bank_hash ${encrypted_hash_bank}`);
-    console.log("document added succsefully");
     navigate("/dashboard");
     alert("uploaded_Succesfully");
+    setIsLoading(false);
   };
 
   return (
-    <div className="passport-form">
-      <h2>Passport Application Form</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="name">Name:</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleInputChange}
-          />
+    <>
+      {isLoading && <div className="loading-overlay"></div>}
+      <div className={`${isLoading ? "blurred" : ""}`}>
+        <div className="passport-form">
+          <h2>Passport Application Form</h2>
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label htmlFor="name">Name:</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="nationality">Nationality:</label>
+              <input
+                type="text"
+                id="nationality"
+                name="nationality"
+                value={formData.nationality}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="dateOfIssue">Date of Issue:</label>
+              <input
+                type="date"
+                id="dateOfIssue"
+                name="dateOfIssue"
+                value={formData.dateOfIssue}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="dateOfExpiry">Date of Expiry:</label>
+              <input
+                type="date"
+                id="dateOfExpiry"
+                name="dateOfExpiry"
+                value={formData.dateOfExpiry}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="dob">Date of Birth:</label>
+              <input
+                type="date"
+                id="dob"
+                name="dob"
+                value={formData.dob}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="image">Upload Image:</label>
+              <input
+                type="file"
+                id="image"
+                name="image"
+                onChange={handleFileChange}
+                accept="image/*"
+              />
+            </div>
+            <button type="submit">Submit Passport Application</button>
+          </form>
         </div>
-        <div className="form-group">
-          <label htmlFor="nationality">Nationality:</label>
-          <input
-            type="text"
-            id="nationality"
-            name="nationality"
-            value={formData.nationality}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="dateOfIssue">Date of Issue:</label>
-          <input
-            type="date"
-            id="dateOfIssue"
-            name="dateOfIssue"
-            value={formData.dateOfIssue}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="dateOfExpiry">Date of Expiry:</label>
-          <input
-            type="date"
-            id="dateOfExpiry"
-            name="dateOfExpiry"
-            value={formData.dateOfExpiry}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="dob">Date of Birth:</label>
-          <input
-            type="date"
-            id="dob"
-            name="dob"
-            value={formData.dob}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="image">Upload Image:</label>
-          <input
-            type="file"
-            id="image"
-            name="image"
-            onChange={handleFileChange}
-            accept="image/*"
-          />
-        </div>
-        <button type="submit">Submit Passport Application</button>
-      </form>
-    </div>
+      </div>
+    </>
   );
 };
 

@@ -7,7 +7,25 @@ function Dashboard(props) {
     <div className="dashboard-container">
       <LeftNav />
       <div className="right-content">
-        <p>This is dashboard {props.account_prop}</p>
+        <div className="dshtext-container">
+          <div className="divdshleft">
+            <p className="dshheading">A GLOBAL TURN-KEY COMPLIANCE SOLUTION</p>
+            <p className="dshdashboard-text">
+              An all-in-one workflow solution to verify your customers'
+              identities, streamline a KYC on-boarding process and manage the
+              entire customer lifecycle.
+            </p>
+          </div>
+          <div className="divdshright">
+            <div className="dshimage-container">
+              <img
+                src="/Dashboard.jpg"
+                alt="Dashboard"
+                className="dshdashboard-image"
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

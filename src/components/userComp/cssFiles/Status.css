@@ -12,6 +12,16 @@
 }
 .inside h2 {
   text-align: center;
+  text-align: center;
+  /* transform: translateY(-50%); */
+  color: #424769;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-family: Mija, -apple-system, BlinkMacSystemFont, Roboto, roboto slab,
+    droid serif, segoe ui, system-ui, Arial, sans-serif;
+  font-size: 35px;
+  font-weight: bold;
+  font-style: normal;
+  margin-top: 40px;
 }
 .tppara {
   text-align: center;
@@ -83,15 +93,18 @@
   background-color: rgb(30, 147, 30);
   color: white;
   font-size: 20px;
+  width: 130px;
 }
 .red {
   background-color: rgb(247, 68, 68);
   color: white;
   font-size: 20px;
+  width: 130px;
 }
 .orange {
   color: white;
   font-size: 20px;
+  width: 130px;
   background-color: rgb(243, 175, 50);
 }
 

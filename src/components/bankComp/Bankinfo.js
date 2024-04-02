@@ -32,34 +32,43 @@ const Bankinfo = (props) => {
       <div className="right-content">
         {!userData && <p>Loading........</p>}
         {userData && (
-          <div>
-            <div className="tp">
+          <div className="usrdiv ekaurdiv">
+            <div className="tp bktppp">
+              <img src="/pngbank.png" alt="bank" className="user-icon us2" />
               <h2>Bank INFORMATION</h2>
             </div>
-            <div className="bank-info">
+            <div className="user-infotp ekaurnaam">
               <p>
-                <strong>Name:</strong> {userData.name}
+                <strong className="tagtp">NAME :</strong>{" "}
+                {userData.name.toUpperCase()}
               </p>
               <p>
-                <strong>Abbreivation:</strong> {userData.id}
+                <strong className="tagtp">ABBREVATION :</strong>{" "}
+                {userData.id.toUpperCase()}
               </p>
               <p>
-                <strong>IFSC code:</strong> {userData.IFSC}
+                <strong className="tagtp">IFSC CODE :</strong>{" "}
+                {userData.IFSC.toUpperCase()}
               </p>
               <p>
-                <strong>Nationality:</strong> {userData.nationality}
+                <strong className="tagtp">MICR CODE :</strong>{" "}
+                {userData.MICR.toUpperCase()}
               </p>
               <p>
-                <strong>MICR code:</strong> {userData.MICR}
+                <strong className="tagtp">NATIONALITY :</strong>{" "}
+                {userData.nationality.toUpperCase()}
               </p>
               <p>
-                <strong>District:</strong> {userData.district}
+                <strong className="tagtp">STATE :</strong>{" "}
+                {userData.state.toUpperCase()}
               </p>
               <p>
-                <strong>Branch:</strong> {userData.branch}
+                <strong className="tagtp">DISTRICT :</strong>{" "}
+                {userData.district.toUpperCase()}
               </p>
               <p>
-                <strong>State:</strong> {userData.state}
+                <strong className="tagtp">BRANCH :</strong>{" "}
+                {userData.branch.toUpperCase()}
               </p>
             </div>
           </div>

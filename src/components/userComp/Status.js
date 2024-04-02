@@ -12,34 +12,24 @@ const Status = (props) => {
       let provider = window.ethereum;
       if (typeof provider !== "undefined") {
         try {
-          console.log(contract);
           let fetchedArray = await contract.methods
             .find_user_status(account)
             .call();
-          // const fetchedarray = solfetchedarray.toString();
-          console.log("huuuuuuuuuuuuuuuuuu");
-          console.log(fetchedArray);
           const mySet = new Set();
           const newfetcharray = [];
           for (let i = fetchedArray.length - 1; i > -1; i = i - 1) {
-            console.log("inside set");
-            console.log(fetchedArray[i]);
             if (!mySet.has(fetchedArray[i])) {
               mySet.add(fetchedArray[i]);
               const st = await contract.methods
                 .mp_account_doc_bank(fetchedArray[i])
                 .call();
-              console.log(`st : ${st}`);
               fetchedArray[i] = fetchedArray[i] + "," + st;
               newfetcharray.push(fetchedArray[i]);
             }
           }
-          console.log("bleasda");
-          console.log(newfetcharray);
           const stArray = newfetcharray.map((str) => str.split(","));
           setStatusArray(stArray);
           setUpdateUI(1);
-          // setFinalArray(1);
         } catch (e) {
           console.log(e);
           alert("Check the connectivity of user metamask");

@@ -1,4 +1,3 @@
-// Showpassport.js
 import React from "react";
 import "./cssFiles/Showpassport.css";
 const Showpassport = ({ data }) => {

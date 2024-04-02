@@ -12,8 +12,6 @@ const Bankapplication = (props) => {
   const [updateUI, setUpdateUI] = useState(0);
   const [selectedSlab, setSelectedSlab] = useState(null);
 
-  //get_pending_applications_for_bank
-
   useEffect(
     () => async () => {
       let provider = window.ethereum;
@@ -23,8 +21,6 @@ const Bankapplication = (props) => {
           let fetchedArray = await contract.methods
             .get_pending_applications_for_bank(bankName)
             .call();
-          // const fetchedarray = solfetchedarray.toString();
-          //   console.log(fetchedArray);
           let decryptbank = new JSEncrypt();
           const private_bank_key = await contract.methods
             .mp_private_bankKey(bankName)
@@ -36,16 +32,20 @@ const Bankapplication = (props) => {
             dec_arr.push(decrypted_hash);
           }
           let newArray = [];
+          let myset = new Set();
           for (let i = 0; i < dec_arr.length; i++) {
             const arr = dec_arr[i].split(",");
             const keystr = arr[0] + "," + arr[1] + "," + arr[2];
-            // console.log(`keystr ${keystr}`);
-            let status = await contract.methods
-              .mp_account_doc_bank(keystr)
-              .call();
-            status = Number(status);
-            if (status === 2) {
-              newArray.push(dec_arr[i] + "," + keystr);
+
+            if (!myset.has(keystr)) {
+              let status = await contract.methods
+                .mp_account_doc_bank(keystr)
+                .call();
+              status = Number(status);
+              if (status === 2) {
+                newArray.push(dec_arr[i] + "," + keystr);
+              }
+              myset.add(keystr);
             }
           }
           const new2darray = [];
@@ -90,10 +90,10 @@ const Bankapplication = (props) => {
         <div className="scrollable-content">
           {updateUI === 1 && (
             <div className="inside">
-              <h2>STATUS OF DOCUMENTS</h2>
+              <h2>PENDING APPLICATIONS</h2>
               <h4>
                 {statusArray.length === 0 && (
-                  <p>You have not applied for any document</p>
+                  <p>You have not pending Application to work upon</p>
                 )}
               </h4>
               {statusArray.map((slab, index) => (
@@ -103,27 +103,23 @@ const Bankapplication = (props) => {
                   onClick={() => handleSlabClick(index)}
                 >
                   <div className="smallwrapper">
-                    <div className="key-slab">
-                      <p>DOCUMENT : </p>
-                    </div>
-                    <div className="slab-tab">
-                      <p>{slab[1]}</p>
+                    <div className="slab-tab somethingdifftwo">
+                      <p className="somethingdiff">{index + 1}</p>
                     </div>
                   </div>
                   <div className="smallwrapper">
-                    <div className="key-slab">
-                      <p>BANK : </p>
-                    </div>
                     <div className="slab-tab">
-                      <p>{slab[2]}</p>
+                      <p>{`DOCUMENT   :   ${slab[1].toUpperCase()}`}</p>
                     </div>
                   </div>
                   <div className="smallwrapper">
-                    <div className="key-slab">
-                      <p>NAME : </p>
-                    </div>
                     <div className="slab-tab">
-                      <p>{slab[3]}</p>
+                      <p>{`BANK   :   ${slab[2].toUpperCase()}`}</p>
+                    </div>
+                  </div>
+                  <div className="smallwrapper">
+                    <div className="slab-tab">
+                      <p>{`NAME   :   ${slab[3].toUpperCase()}`}</p>
                     </div>
                   </div>
                 </div>
@@ -146,25 +142,4 @@ const Bankapplication = (props) => {
   );
 };
 
-// {
-//   statusArray.map((slab, index) => (
-//     <div key={index} className="slab">
-//       <div className="slab-left">
-//         <div>
-//           <p>{slab[1].toUpperCase()}</p>
-//         </div>
-//         <div>
-//           <p>{slab[2].toUpperCase()}</p>
-//         </div>
-//       </div>
-//       <div className="slab-right">
-//         <div>
-//           {slab[3] === "3" && <p className="green">APPROVED</p>}
-//           {slab[3] === "2" && <p className="orange">PENDING</p>}
-//           {slab[3] === "1" && <p className="red">REJECTED</p>}
-//         </div>
-//       </div>
-//     </div>
-//   ));
-// }
 export default Bankapplication;

@@ -15,21 +15,6 @@
   padding: 20px;
 }
 
-.bank-info {
-  background-color: #f9f9f9;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 20px;
-}
-
-.bank-info h2 {
-  margin-bottom: 10px;
-}
-
-.bank-info p {
-  margin: 5px 0;
-}
-
 .right-content button {
   padding: 10px 15px;
   margin: 10px;
@@ -45,4 +30,14 @@
 }
 .tp h2 {
   text-align: center;
+}
+
+.ekaurdiv {
+  height: 400px;
+}
+
+.us2 {
+  height: 50%;
+  width: 30%;
+  padding: 10px;
 }

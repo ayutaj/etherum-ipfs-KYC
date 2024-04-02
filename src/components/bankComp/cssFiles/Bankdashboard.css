@@ -1,4 +1,4 @@
-.bankdashboard-container {
+.dashboard-container {
   display: flex;
   height: 100vh; /* Take complete height */
   overflow: hidden;
@@ -7,16 +7,67 @@
   width: 80%; /* Take 70% of total width */
   height: 100%; /* Take complete height */
   display: flex;
-  justify-content: start; /* Center the content horizontally */
+  justify-content: center; /* Center the content horizontally */
   overflow-y: hidden;
-  align-items: center;
-  text-align: center;
 }
-.scrollable-content {
-  height: 100%;
-  overflow-y: auto; /* Added overflow-y: auto */
-  padding-right: 15px;
-  padding-bottom: 20px; /* Added padding-bottom */
-  box-sizing: border-box; /* Added box-sizing: border-box */
+
+.dshtext-container {
+  height: 80%;
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  /* background-color: red; */
+}
+.divdshleft {
+  width: 45%;
+  height: 100%;
+  /* background-color: green; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
+  text-align: left;
+}
+.divdshright {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 50%;
+  /* background-color: black; */
+}
+
+.dshheading {
+  color: rgb(24, 23, 23);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-family: Mija, -apple-system, BlinkMacSystemFont, Roboto, roboto slab,
+    droid serif, segoe ui, system-ui, Arial, sans-serif;
+  font-size: 50px;
+  /* background-color: aquamarine; */
+  font-weight: bolder;
+  font-style: normal;
+}
+.dshdashboard-text {
+  color: rgb(30, 28, 28);
+  font-family: Mija, -apple-system, BlinkMacSystemFont, Roboto, roboto slab,
+    droid serif, segoe ui, system-ui, Arial, sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  font-style: normal;
+  /* background-color: #3c0753; */
+}
+
+.dshdashboard-image {
+  width: 90%;
+  height: 90%;
+  border: 3px solid rgb(255, 255, 255);
+  background: transparent;
+  padding: 8px;
+  border: 1px solid #3c0753;
+  box-shadow: 20px 35px 20px #9290c3;
+}
+
+.dshdashboard-image:hover {
+  transform: scale(1.1); /* Increase the scale on hover */
 }

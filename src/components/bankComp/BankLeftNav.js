@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./cssFiles/BankLeftNav.css";
 
-const LeftNav = () => {
+const BankLeftNav = () => {
   const navigate = useNavigate();
 
   const handleBank_Info = () => {
@@ -36,4 +36,4 @@ const LeftNav = () => {
   );
 };
 
-export default LeftNav;
+export default BankLeftNav;

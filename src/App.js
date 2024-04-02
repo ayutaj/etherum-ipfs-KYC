@@ -23,11 +23,9 @@ function App() {
       let provider = window.ethereum;
       const web3 = new Web3(provider);
       if (typeof provider !== "undefined") {
-        console.log("heelo");
         await provider.request({ method: "eth_requestAccounts" });
         const accounts = await web3.eth.getAccounts();
         setaccount(accounts[0]);
-        // setaccount("2f0Fb46864A3A1D56B087342bEB0899B814D0E");
         const contractAddress = process.env.REACT_APP_CONTRACT_ADDRESS;
         const contractABI = configuration.abi;
         let tempcontract = new web3.eth.Contract(contractABI, contractAddress);
@@ -87,7 +85,6 @@ function App() {
     },
   ]);
 
-  console.log(`halala ${account} ${contract}`);
   return <RouterProvider router={router} />;
 }
 

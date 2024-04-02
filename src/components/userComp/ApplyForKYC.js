@@ -27,9 +27,8 @@ const ApplyForKYC = (props) => {
               .call();
             banknamelist.push(bkname);
           }
-          // console.log("yiuuoup");
+
           setBanks(banknamelist);
-          console.log(tempuserData);
           setUserData(tempuserData);
         } catch (e) {
           console.log(e);
@@ -44,11 +43,9 @@ const ApplyForKYC = (props) => {
 
   function handleDocChange(val) {
     setSelectedDoctype(val);
-    console.log(`yp ${val}`);
   }
   function handleBankChange(val) {
     setSelectedBank(val);
-    console.log(`yp ${val}`);
   }
   return (
     <div className="apply-container">
@@ -63,27 +60,42 @@ const ApplyForKYC = (props) => {
           {userData && (
             <div className="container_for_apply">
               <div>
-                <div className="tp">
+                <div className="tph">
                   <h2>USER INFORMATION</h2>
                 </div>
-                <div className="user-info">
+                <div className="user-infotptwo">
                   <p>
-                    <strong>First Name:</strong> {userData.fName}
+                    <strong className="tagtp">FIRST NAME :</strong>{" "}
+                    {userData.fName.toUpperCase()}
                   </p>
                   <p>
-                    <strong>Last Name:</strong> {userData.lName}
+                    <strong className="tagtp">LAST NAME :</strong>{" "}
+                    {userData.lName.toUpperCase()}
                   </p>
                   <p>
-                    <strong>Date of Birth:</strong> {userData.dob}
+                    <strong className="tagtp">FATHER'S NAME :</strong>{" "}
+                    {userData.fathersName.toUpperCase()}
                   </p>
                   <p>
-                    <strong>Nationality:</strong> {userData.nationality}
+                    <strong className="tagtp">MOTHER'S NAME :</strong>{" "}
+                    {userData.mothersName.toUpperCase()}
                   </p>
                   <p>
-                    <strong>Email Address:</strong> {userData.email_address}
+                    <strong className="tagtp">DATE OF BIRTH :</strong>{" "}
+                    {userData.dob.toUpperCase()}
                   </p>
                   <p>
-                    <strong>phoneNumber:</strong> {userData.phoneNumber}
+                    <strong className="tagtp">NATIONALITY :</strong>{" "}
+                    {userData.nationality.toUpperCase()}
+                  </p>
+                  <p>
+                    <strong className="tagtp">EMAIL :</strong>{" "}
+                    {userData.email_address.toLowerCase()}
+                  </p>
+
+                  <p>
+                    <strong className="tagtp">CONTACT NUMBER :</strong>{" "}
+                    {userData.phoneNumber.toUpperCase()}
                   </p>
                 </div>
               </div>
@@ -142,30 +154,3 @@ const ApplyForKYC = (props) => {
 };
 
 export default ApplyForKYC;
-
-// const fetchapply = async () => {
-//   try {
-//     const provider = window.ethereum;
-//     // const web3 = new Web3(provider);
-//     if (typeof provider !== "undefined") {
-//       // await provider.request({ method: "eth_requestAccounts" });
-//       // const accounts = await web3.eth.getAccounts();
-//       // account = accounts[0];
-//       // const contractAddress = process.env.REACT_APP_CONTRACT_ADDRESS;
-//       // const contractABI = configuration.abi;
-//       // contract = new web3.eth.Contract(contractABI, contractAddress);
-//       console.log("connect apply successful");
-//       try {
-//         userData = await contract.methods.mp_usermap(account).call();
-//         setUpdatebtn(1);
-//       } catch (e) {
-//         console.log(e);
-//         alert("Check the connectivity of user metamask");
-//       }
-//     } else {
-//       console.log("Non-ethereum browser detected.Please install Metamask");
-//     }
-//   } catch (error) {
-//     console.error("Error fetching data:", error);
-//   }
-// };

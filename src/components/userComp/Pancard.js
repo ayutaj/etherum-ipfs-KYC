@@ -6,6 +6,8 @@ import "./cssFiles/Pancard.css";
 
 const Pancard = (props) => {
   const navigate = useNavigate();
+
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     fathersName: "",
@@ -24,14 +26,12 @@ const Pancard = (props) => {
     if (file && file.type.startsWith("image/")) {
       setFormData({ ...formData, image: file });
     } else {
-      // File is not an image
       alert("Please upload an image file.");
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Check if all fields are filled
 
     if (props.bankname_prop.length === 0) {
       alert("Select Bank Type");
@@ -63,16 +63,15 @@ const Pancard = (props) => {
       }
     }
 
-    //a68801aa3eac2a8b8478
-    //ded4ed2fc7d1af369144455ac683ac422d8eb6150ca9c413f9ada7fe7431d3e7;
     const account = props.account_prop;
 
     const contract = props.contract_prop;
     const publicKeyuser = `-----BEGIN PUBLIC KEY-----${process.env.REACT_APP_PUBLIC_KEY}=-----END PUBLIC KEY-----`;
-    //uploading to pinata
     const imgfile = formData.image;
     const modifieddata = new FormData();
     modifieddata.append("file", imgfile);
+    setIsLoading(true);
+
     const resFile = await axios({
       method: "post",
       url: process.env.REACT_APP_PINATA_URL,
@@ -129,68 +128,73 @@ const Pancard = (props) => {
 
     console.log(`encrypted_user_hash ${encrypted_hash_user}`);
     console.log(`encrypted_bank_hash ${encrypted_hash_bank}`);
-    console.log("document added succsefully");
     navigate("/dashboard");
     alert("uploaded_Succesfully");
+    setIsLoading(false);
   };
 
   return (
-    <div className="pancard-form">
-      <h2>Pancard Application Form</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="name">Name:</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleInputChange}
-          />
+    <>
+      {isLoading && <div className="loading-overlay"></div>}
+      <div className={`${isLoading ? "blurred" : ""}`}>
+        <div className="pancard-form">
+          <h2>Pancard Application Form</h2>
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label htmlFor="name">Name:</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="fathersName">Father's Name:</label>
+              <input
+                type="text"
+                id="fathersName"
+                name="fathersName"
+                value={formData.fathersName}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="panCard">PAN Number:</label>
+              <input
+                type="text"
+                id="panCard"
+                name="panCard"
+                value={formData.panCard}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="dob">Date of Birth:</label>
+              <input
+                type="date"
+                id="dob"
+                name="dob"
+                value={formData.dob}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="image">Upload Image:</label>
+              <input
+                type="file"
+                id="image"
+                name="image"
+                onChange={handleFileChange}
+                accept="image/*"
+              />
+            </div>
+            <button type="submit">Submit Pancard Application</button>
+          </form>
         </div>
-        <div className="form-group">
-          <label htmlFor="fathersName">Father's Name:</label>
-          <input
-            type="text"
-            id="fathersName"
-            name="fathersName"
-            value={formData.fathersName}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="panCard">PAN Number:</label>
-          <input
-            type="text"
-            id="panCard"
-            name="panCard"
-            value={formData.panCard}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="dob">Date of Birth:</label>
-          <input
-            type="date"
-            id="dob"
-            name="dob"
-            value={formData.dob}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="image">Upload Image:</label>
-          <input
-            type="file"
-            id="image"
-            name="image"
-            onChange={handleFileChange}
-            accept="image/*"
-          />
-        </div>
-        <button type="submit">Submit Pancard Application</button>
-      </form>
-    </div>
+      </div>
+    </>
   );
 };
 
